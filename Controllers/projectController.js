@@ -64,15 +64,29 @@ exports.allProjects = async (req,res)=>{
 
 //gethomeprojects
 
-exports.homeProjects = async (req,res)=>{
-   
-    try{
-        const homeProjects = await projects.find().limit(3)
-        res.status(200).json(homeProjects)
-    }catch(err){
-        res.status(401).json(err)
+exports.homeProjects = async (req, res) => {
+    try {
+        const homeProjects = await projects.find().limit(3);
+        res.status(200).json(homeProjects);
+
+    } catch (err) {
+        console.log("Home Projects Error:", err);
+
+        res.status(500).json({
+            message: "Failed to fetch home projects",
+            error: err.message
+        });
     }
-}
+};
+// exports.homeProjects = async (req,res)=>{
+   
+//     try{
+//         const homeProjects = await projects.find().limit(3)
+//         res.status(200).json(homeProjects)
+//     }catch(err){
+//         res.status(401).json(err)
+//     }
+// }
 
 //edit projects
 exports.editProjectsController = async (req,res)=>{
